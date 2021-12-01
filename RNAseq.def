@@ -1,0 +1,18 @@
+# r based on Ubuntu 20.04 with Bioconductor
+#made by Giyoung Lee, If you want to help me,contact gy48085@gmail.com
+
+Bootstrap: localimage
+From: /data/keeyoung/image/bioconductor_docker_latest.sif
+
+%post
+# install dependencies
+R --slave -e 'BiocManager::install(version = "3.14", ask='FALSE')'
+R --slave -e 'BiocManager::install("Rsubread", ask='FALSE')'
+R --slave -e 'BiocManager::install("tximport", ask='FALSE')'
+R --slave -e 'BiocManager::install("edgeR", ask='FALSE')'
+R --slave -e 'BiocManager::install("mixOmics", ask='FALSE')'
+R --slave -e 'BiocManager::install("org.Hs.eg.db", ask='FALSE')'
+
+%help
+Bioconductor version 3.14
+R version 4.1.1
