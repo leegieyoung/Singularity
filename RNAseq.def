@@ -6,12 +6,19 @@ From: /data/keeyoung/image/bioconductor_docker_latest.sif
 
 %post
 # install dependencies
+R --slave -e 'install.packages("statmod", ask='FALSE')'
+R --slave -e 'install.packages("RColorBrewer", ask='FALSE')'
+R --slave -e 'install.packages("repr", ask='FALSE')'
+R --slave -e 'install.packages("statmod", ask='FALSE')'
 R --slave -e 'BiocManager::install(version = "3.14", ask='FALSE')'
 R --slave -e 'BiocManager::install("Rsubread", ask='FALSE')'
 R --slave -e 'BiocManager::install("tximport", ask='FALSE')'
 R --slave -e 'BiocManager::install("edgeR", ask='FALSE')'
+R --slave -e 'BiocManager::install("limma", ask='FALSE')'
+R --slave -e 'BiocManager::install("GO.db", ask='FALSE')'
 R --slave -e 'BiocManager::install("mixOmics", ask='FALSE')'
 R --slave -e 'BiocManager::install("org.Hs.eg.db", ask='FALSE')'
+R --slave -e 'BiocManager::install("ComplexHeatmap", ask='FALSE')'
 
 %help
 Bioconductor version 3.14
