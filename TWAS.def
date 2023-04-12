@@ -1,0 +1,32 @@
+# WES(gatk) based on Ubuntu 20.04 with Bioconductor
+#made by Giyoung Lee, If you want to help me,contact gy48085@gmail.com
+
+Bootstrap: localimage
+From: /data/keeyoung/image/TWAS.sif
+
+%post
+# install dependencies
+#apt-get install -y \
+#	cmake 
+
+#apt-get install -y \
+#    swig
+
+R --slave -e 'install.packages("tidyverse", ask='FALSE')'
+
+#peer
+#mkdir -p 01.TOOLS/06.peer
+#cd 01.TOOLS/06.peer
+#wget https://github.com/hakyimlab/peer/archive/refs/heads/master.zip
+#unzip master.zip
+#mv peer-master peer
+#cd peer
+#mkdir build
+#cd build
+#cmake ./..
+#make
+#make install
+
+
+%help
+
