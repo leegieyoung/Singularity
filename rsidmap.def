@@ -1,0 +1,46 @@
+# rsid based on Ubuntu python-3.9.9.sif
+#made by Giyoung Lee, If you want to help me,contact gy48085@gmail.com
+
+Bootstrap: localimage
+From: /home/ichrogene/gylee/Singularity/python-3.9.9.sif
+
+%post
+# install dependencies
+apt-get update
+apt-get install -y \
+	build-essential wget gzip bzip2 libncurses5-dev zlib1g-dev libbz2-dev liblzma-dev
+
+pip3 install \
+	numpy argparse
+
+mkdir -p /00.TOOLS/01.samtools
+cd /00.TOOLS/01.samtools
+wget https://github.com/samtools/samtools/releases/download/1.17/samtools-1.17.tar.bz2
+tar -xvf samtools-1.17.tar.bz2
+cd samtools-1.17
+./configure --prefix=/usr/local/bin
+make
+make install
+export PATH=/usr/local/bin:$PATH
+
+mkdir -p /00.TOOLS/01.bcftools
+cd /00.TOOLS/01.bcftools
+wget https://github.com/samtools/bcftools/releases/download/1.17/bcftools-1.17.tar.bz2
+tar -xvf bcftools-1.17.tar.bz2
+cd bcftools-1.17
+./configure --prefix=/usr/local/bin
+make
+make install
+export PATH=/usr/local/bin:$PATH
+
+mkdir -p /00.TOOLS/01.htslib
+cd /00.TOOLS/01.htslib
+wget https://github.com/samtools/htslib/releases/download/1.17/htslib-1.17.tar.bz2
+tar -xvf htslib-1.17.tar.bz2
+cd htslib-1.17
+./configure --prefix=/usr/local/bin
+make
+make install
+export PATH=/usr/local/bin:$PATH
+
+%help
