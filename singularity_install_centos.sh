@@ -1,14 +1,13 @@
 #Gylee singularity env 230321
-sudo apt-get update -y && \
-     sudo apt-get install build-essential -y && \
-     sudo apt-get install -y \
-     libssl-dev \
-     uuid-dev \
-     libseccomp-dev \
+sudo yum update -y && \
+     sudo yum groupinstall -y 'Development Tools' && \
+     sudo yum install -y \
+     openssl-devel \
+     libuuid-devel \
+     libseccomp-devel \
      wget \
      squashfs-tools \
-     cryptsetup \
-     pkg-config
+     cryptsetup
 
 rm -rf /usr/local/go #anti-collision
 
