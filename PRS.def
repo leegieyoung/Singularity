@@ -1,0 +1,61 @@
+# based on Ubuntu 20.04 with Bioconductor
+#made by Giyoung Lee, If you want to help me,contact gy48085@gmail.com
+
+Bootstrap: localimage
+#From: /mnt/nas/gylee/Singurality/singularity-r.sif
+From: /mnt/nas/gylee/Singurality/Rfigure.sif
+
+%post
+#Rpackage
+#apt-get update -y
+#R --slave -e 'install.packages("qqman", ask='FALSE')'
+#R --slave -e 'install.packages("dplyr", dependencies = 'TRUE',ask='FALSE')'
+
+#plink
+mkdir -p /01.TOOLS/01.plink
+cd /01.TOOLS/01.plink
+wget https://s3.amazonaws.com/plink1-assets/plink_linux_x86_64_20230116.zip
+unzip plink_linux_x86_64_20230116.zip
+chmod 775 plink
+cd /usr/local/bin/
+ln -s /01.TOOLS/01.plink/plink plink
+
+#bcftools
+mkdir -p /01.TOOLS/02.bcftools
+cd /01.TOOLS/02.bcftools
+wget https://github.com/samtools/bcftools/releases/download/1.17/bcftools-1.17.tar.bz2
+tar -xvf bcftools-1.17.tar.bz2
+cd bcftools-1.17
+make
+chmod 775 bcftools
+cd /usr/local/bin/
+ln -sf /01.TOOLS/02.bcftools/bcftools-1.17/bcftools bcftools
+
+apt-get update -y
+apt-get install -y \
+ python3-dev python3-pip
+
+yes | python3 -m pip install --upgrade pip
+yes | python3 -m pip install pyBigWig
+yes | python3 -m pip install pandas
+
+apt-get install -y \
+ cmake
+pip install cget
+
+#DosageConverter
+mkdir -p /01.TOOLS/03.DosageConvertor
+cd /01.TOOLS/03.DosageConvertor
+wget https://github.com/Santy-8128/DosageConvertor/archive/refs/heads/master.zip
+unzip master.zip
+cd DosageConvertor-master
+#sh install.sh
+cget install -f ./requirements.txt                      # Install dependencies locally.
+mkdir build && cd build                                 # Create out of source build directory.
+cmake -DCMAKE_TOOLCHAIN_FILE=../cget/cget/cget.cmake .. # Configure project with dependency paths.
+make  
+
+cd /usr/local/bin/
+chmod 775 /01.TOOLS/03.DosageConvertor/DosageConvertor-master/build/DosageConvertor
+ln -sf /01.TOOLS/03.DosageConvertor/DosageConvertor-master/build/DosageConvertor DosageConvertor
+%help
