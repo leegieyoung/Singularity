@@ -22,4 +22,8 @@ R --slave -e 'BiocManager::install("ComplexHeatmap", ask='FALSE')'
 
 %help
 Bioconductor version 3.14
+<<<<<<< HEAD
 R version 4.1.1
+=======
+R version 4.1.1
+>>>>>>> 0986b21f6827c38f08f6798386f3536cabe54c66

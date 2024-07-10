@@ -1,0 +1,49 @@
+# based on Ubuntu 20.04 with Bioconductor
+#made by Giyoung Lee, If you want to help me,contact gy48085@gmail.com
+
+Bootstrap: localimage
+From: /mnt/nas/gylee/Singurality/gatk.sif
+
+%post
+#apt-get update -y
+#apt-get install -y libgmp-dev
+
+#mkdir /01.TOOLS
+#cd /01.TOOLS
+#mkdir 02.Trimmomatic
+#cd 02.Trimmomatic
+#wget http://www.usadellab.org/cms/uploads/supplementary/Trimmomatic/Trimmomatic-0.39.zip
+#unzip Trimmomatic-0.39.zip
+
+#chmod 777 Trimmomatic-0.39/trimmomatic-0.39.jar
+#cd /usr/local/bin/
+#ln -s /01.TOOLS/02.Trimmomatic/Trimmomatic-0.39/trimmomatic-0.39.jar trimmomatic-0.39.jar
+
+mkdir 01.TOOLS/01.fastqc
+cd 01.TOOLS/01.fastqc
+wget https://www.bioinformatics.babraham.ac.uk/projects/fastqc/fastqc_v0.11.9.zip
+unzip fastqc_v0.11.9.zip
+pwd
+chmod 777 FastQC/fastqc
+cd /usr/local/bin/
+ln -s /01.TOOLS/01.fastqc/FastQC/fastqc fastqc
+
+cd /01.TOOLS
+mkdir 03.BWA
+cd 03.BWA
+wget https://sourceforge.net/projects/bio-bwa/files/bwakit/bwakit-0.7.15_x64-linux.tar.bz2
+tar jxf bwakit-0.7.15_x64-linux.tar.bz2
+cd /01.TOOLS/03.BWA/bwa.kit
+cd /usr/local/bin/
+ln -s /01.TOOLS/03.BWA/bwa.kit/bwa bwa
+
+cd /01.TOOLS
+mkdir 04.MARKDUP
+cd 04.MARKDUP
+wget https://sourceforge.net/projects/picard/files/picard-tools/1.119/picard-tools-1.119.zip
+unzip picard-tools-1.119.zip
+cd picard-tools-1.119
+cd /usr/local/bin/
+ln -s /01.TOOLS/04.MARKDUP/picard-tools-1.119/MarkDuplicates.jar MarkDuplicates.jar
+
+%help
