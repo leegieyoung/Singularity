@@ -1,0 +1,32 @@
+Bootstrap: localimage
+From: /mnt/nas/gylee/git/Singularity/chipimputation_minimac4.sif
+#singularity pull shub://h3abionet/chipimputation:minimac4
+
+%post
+apt-get update
+apt-get install -y \
+ libcurl4-openssl-dev libhts-dev libboost-all-dev tabix
+
+#htslib-1.17
+mkdir -p /00.TOOLS/01.htslib
+cd /00.TOOLS/01.htslib
+wget https://github.com/samtools/htslib/releases/download/1.17/htslib-1.17.tar.bz2
+tar -xvf htslib-1.17.tar.bz2
+cd htslib-1.17
+./configure --prefix=/usr/local/bin
+make
+make install
+export PATH=/usr/local/bin:$PATH
+
+mkdir -p /root/Tools/htslib-1.11/
+cp /00.TOOLS/01.htslib/htslib-1.17/libhts.a /root/Tools/htslib-1.11/libhts.a
+
+mkdir -p /00.TOOLS/01.shapeit4
+cd /00.TOOLS/01.shapeit4
+wget https://github.com/odelaneau/shapeit4/archive/refs/tags/v4.2.2.tar.gz
+tar -xvf v4.2.2.tar.gz
+cd shapeit4-4.2.2
+make
+ln -s /00.TOOLS/01.shapeit4/shapeit4-4.2.2/bin/shapeit4.2 /usr/local/bin/shapeit4.2
+%help
+

@@ -1,0 +1,33 @@
+# based on Ubuntu 20.04 with Bioconductor
+#made by Giyoung Lee, If you want to help me,contact gy48085@gmail.com
+
+Bootstrap: localimage
+#From: /mnt/nas/gylee/Singurality/Rfigure.sif
+From: /mnt/nas/gylee/Singurality/test2.sif
+
+%post
+#apt-get update -y 
+
+#apt-get install -y \
+#	libfreetype6-dev libpng-dev libtiff5-dev libjpeg-dev
+
+#apt-get install -y \
+#	libharfbuzz-dev apt-utils debconf 
+#apt-get install -y \
+#	libfribidi-dev
+
+#R --slave -e 'install.packages("ragg", ask='FALSE')'
+#R --slave -e 'install.packages("textshaping", ask='FALSE')'
+
+#R --slave -e 'install.packages("pkgdown", type = "source", ask = FALSE)'
+#R --slave -e 'install.packages(c("ragg", "pkgdown", "devtools"), type = "source", ask = FALSE)'
+R --salve -e 'devtools::install_github("andrewhaoyu/CTSLEB", ask='FALSE')'
+
+%environment
+    export LC_ALL=C
+
+%labels
+    Author gylee
+    Version v0.0.0
+
+%help

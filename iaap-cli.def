@@ -1,0 +1,23 @@
+Bootstrap: localimage
+From: /mnt/nas/gylee/Singurality/GWAS.sif
+
+
+%files
+/mnt/nas/gylee/0.GWAS/3.IAAP/linux/iaap-cli/iaap-cli/* /usr/local/bin/
+
+%post
+#qqman
+#R --slave -e 'install.packages("qqman", ask='FALSE')'
+
+#plink
+#mkdir -p /01.TOOLS/01.plink
+#cd /01.TOOLS/01.plink
+#wget https://s3.amazonaws.com/plink1-assets/plink_linux_x86_64_20230116.zip
+#unzip plink_linux_x86_64_20230116.zip
+#chmod 775 plink
+#cd /usr/local/bin/
+#ln -s /01.TOOLS/01.plink/plink plink
+
+
+%help
+Made by Giyoung Lee, If you want to help me,contact gy48085@gmail.com

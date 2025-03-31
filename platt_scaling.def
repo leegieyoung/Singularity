@@ -1,0 +1,30 @@
+# based on Ubuntu 20.04 with Bioconductor
+#made by Giyoung Lee, If you want to help me,contact gy48085@gmail.com
+
+Bootstrap: localimage
+#From: /mnt/nas/gylee/Singurality/singularity-r.sif
+From: platt_scaling.sif
+
+%files
+
+%environment
+    export PORT=8888
+    export LC_ALL=C
+
+
+%post
+#apt-get install -y \
+# software-properties-common
+
+#apt-get update -y
+#apt-get install -y \
+# gzip cmake python3-pip python3-dev
+
+#yes | python3 -m pip install --upgrade pip
+#yes | python3 -m pip install pyBigWig
+
+#apt-get install -y \
+# cmake
+#pip install cget
+#pip install  numpy pandas matplotlib xgboost scikit-learn jupyter
+pip install jupyter

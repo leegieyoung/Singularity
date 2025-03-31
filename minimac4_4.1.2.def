@@ -55,6 +55,6 @@ make install
 export PATH=/usr/local/bin:$PATH
 cd /usr/local/bin/
 ln -sf /00.TOOLS/01.htslib/htslib-1.17/bgzip bgzip
-
+ln -sf /00.TOOLS/01.htslib/htslib-1.17/tabix tabix
 
 

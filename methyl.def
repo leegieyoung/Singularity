@@ -2,28 +2,30 @@
 #made by Giyoung Lee, If you want to help me,contact gy48085@gmail.com
 
 Bootstrap: localimage
-#From: /mnt/nas/gylee/Singurality/bioconductor_4.4.1.sif
-#singularity build bioconductor_4.4.1.sif docker://bioconductor/bioconductor_docker:devel
-From: /mnt/nas/gylee/Singurality/methyl.4.4.1.sif
+#From: /mnt/nas/gylee/Singurality/bioconductor_latest.sif
+From: /mnt/nas/gylee/Singurality/methyl.sif
+##From: /mnt/nas/gylee/Singurality/singularity-r.sif
 
 %post
 #R --slave -e '.libPaths(c("/usr/local/lib/R/site-library"))'  # 패키지 라이브러리 경로 설정
-#
-## rlang 패키지가 로드된 상태에서 devtools 패키지를 사용하여 CTSLEB 패키지 설치
+
+# rlang 패키지가 로드된 상태에서 devtools 패키지를 사용하여 CTSLEB 패키지 설치
 #R --slave -e 'devtools::install_github("al2na/methylKit", build_vignettes=FALSE, repos=BiocManager::repositories(), dependencies=TRUE, ask='FALSE')'
-#
-##Version issue
-#R --slave -e 'BiocManager::install(c("FlowSorted.Blood.450k", "Gviz", "shinyMethyl", "shinyMethylData","methylKit", "minfiData", "minfi", "sva", "IlluminaHumanMethylationEPICanno.ilm10b2.hg19", "ggplot2", "missMethyl", "mCSEA", "IlluminaHumanMethylationEPICmanifest"), ask='FALSE', lib="/usr/local/lib/R/site-library")'
-#
+
+#Version issue
+#R --slave -e 'BiocManager::install("methylKit", ask='FALSE')'
+#R --slave -e 'BiocManager::install("minfiData", ask='FALSE')'
+#R --slave -e 'BiocManager::install("minfi", ask='FALSE')'
+#R --slave -e 'BiocManager::install("sva", ask='FALSE')'
+#R --slave -e 'BiocManager::install("IlluminaHumanMethylationEPICanno.ilm10b2.hg19", ask='FALSE')'
+#R --slave -e 'install.packages("ggplot2", ask='FALSE')'
+#R --slave -e 'BiocManager::install(c("FlowSorted.Blood.450k", "Gviz", "shinyMethyl", "shinyMethylData"), ask='FALSE',lib="/usr/local/lib/R/site-library")'
 #R --slave -e 'devtools::install_github("hansenlab/tutorial.450k",lib="/usr/local/lib/R/site-library")'
-#R --slave -e 'BiocManager::install("preprocessCore", configure.args = c(preprocessCore = "--disable-threading"), force= TRUE, update=TRUE, type = "source")'
-#R --slave -e 'install.packages("doParallel", ask='FALSE')'
-#R --slave -e 'BiocManager::install("sesame", configure.args = c(preprocessCore = "--disable-threading"), update=TRUE)'
-#R --slave -e 'BiocManager::install("DMRcate", configure.args = c(preprocessCore = "--disable-threading"), update=TRUE)'
-R --slave -e 'BiocManager::install("ConsensusClusterPlus", update=TRUE)'
-
-
-##
+#R --slave -e 'BiocManager::install(c("missMethyl", "mCSEA"), ask='FALSE',lib="/usr/local/lib/R/site-library")'
+#R --slave -e 'BiocManager::install("IlluminaHumanMethylationEPICmanifest", ask='FALSE')'
+#R --slave -e 'BiocManager::install("preprocessCore", configure.args=c(preprocessCore = "--disable-threading"), force='TRUE')' #Same issue..
+R --slave -e 'BiocManager::install("preprocessCore", configure.args = c(preprocessCore = "--disable-threading"), force= TRUE, update=TRUE, type = "source")'
+#
 #apt-get update -y
 #apt-get install -y \
 #python3-dev python3-pip git
@@ -33,10 +35,11 @@ R --slave -e 'BiocManager::install("ConsensusClusterPlus", update=TRUE)'
 #cd /usr/local/bin/
 #ln -sf /root/.local/bin/cutadapt cutadapt
 #
-#mkdir -p /00.TOOLS/00.fastqc
+#mkdir /00.TOOLS/00.fastqc
 #cd /00.TOOLS/00.fastqc
 #wget https://www.bioinformatics.babraham.ac.uk/projects/fastqc/fastqc_v0.11.9.zip
 #unzip fastqc_v0.11.9.zip
+#pwd
 #chmod 777 FastQC/fastqc
 #cd /usr/local/bin/
 #ln -sf /00.TOOLS/00.fastqc/FastQC/fastqc fastqc
@@ -74,14 +77,14 @@ R --slave -e 'BiocManager::install("ConsensusClusterPlus", update=TRUE)'
 #cd /usr/local/bin/
 #ln -sf /00.TOOLS/01.htslib/htslib-1.17/bgzip bgzip
 #ln -sf /00.TOOLS/01.htslib/htslib-1.17/tabix tabix
-#
+
 #mkdir -p /00.TOOLS/01.Bowtie2
 #cd /00.TOOLS/01.Bowtie2
 #wget https://sourceforge.net/projects/bowtie-bio/files/bowtie2/2.4.5/bowtie2-2.4.5-linux-x86_64.zip
 #unzip bowtie2-2.4.5-linux-x86_64.zip
 #cd /usr/local/bin/
 #ln -sf /00.TOOLS/01.Bowtie2/bowtie2-2.4.5-linux-x86_64/bowtie2 bowtie2
-#
+
 #mkdir -p /00.TOOLS/02.Bismark
 #cd /00.TOOLS/02.Bismark
 #wget https://github.com/FelixKrueger/Bismark/archive/0.22.3.tar.gz

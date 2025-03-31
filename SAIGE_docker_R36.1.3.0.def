@@ -1,0 +1,13 @@
+# based on Ubuntu 20.04 with Bioconductor
+#made by Giyoung Lee, If you want to help me,contact gy48085@gmail.com
+
+Bootstrap: localimage
+From: /mnt/nas/gylee/Singurality/SAIGE_docker_R36.1.3.0.sif
+
+%post
+#R --slave -e 'install.packages("qqman", ask='FALSE')'
+R --slave -e 'install.packages("MatrixModels", ask='FALSE', dependencies='TRUE')'
+R --slave -e 'install.packages("quantreg", ask='FALSE', dependencies='TRUE')'
+R --slave -e 'install.packages("alr4", ask='FALSE', dependencies='TRUE')'
+R --slave -e 'install.packages("car", ask='FALSE', dependencies='TRUE')'
+

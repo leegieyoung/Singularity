@@ -1,0 +1,23 @@
+# based on Ubuntu 20.04 with Bioconductor
+#made by Giyoung Lee, If you want to help me,contact gy48085@gmail.com
+
+Bootstrap: localimage
+From: /mnt/nas/gylee/Singurality/shapeit4.2.sif
+
+%post
+yum -y update
+yum -y install git wget tar gcc make
+i
+#bcftools
+mkdir -p /01.TOOLS/02.bcftools
+cd /01.TOOLS/02.bcftools
+wget https://github.com/samtools/bcftools/releases/download/1.17/bcftools-1.17.tar.bz2
+tar -xvf bcftools-1.17.tar.bz2
+cd bcftools-1.17
+make
+chmod 775 bcftools
+cd /usr/local/bin/
+ln -sf /01.TOOLS/02.bcftools/bcftools-1.17/bcftools bcftools
+
+%help
+

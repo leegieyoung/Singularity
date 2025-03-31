@@ -1,0 +1,100 @@
+# based on Ubuntu 20.04 with Bioconductor
+#made by Giyoung Lee, If you want to help me,contact gy48085@gmail.com
+
+Bootstrap: localimage
+From: /mnt/nas/gylee/Singurality/GWAS.sif
+
+%post
+#Rpackage
+#apt-get update -y
+#apt-get install -y libgmp-dev
+#R --slave -e 'install.packages("qqman", ask='FALSE')'
+#R --slave -e 'install.packages(c("rlang","gtable", "scales"), ask='FALSE')'
+#R --slave -e 'remove.packages("rlang")'
+#R --slave -e 'install.packages("rlang", dependencies = 'TRUE', ask='FALSE')'
+#R --slave -e 'install.packages("rlang", dependencies = 'TRUE', ask='FALSE')'
+#R --slave -e 'update.packages(ask = 'FALSE', checkBuilt = 'TRUE')'
+#R --slave -e 'install.packages("dplyr", dependencies = 'TRUE',ask='FALSE')'
+#R --slave -e 'install.packages("ggplot2", ask='FALSE')'
+#R --slave -e 'install.packages("BiocManager", ask='FALSE')'
+#R --slave -e 'BiocManager::install("biomaRt", ask='FALSE')'
+#R --slave -e 'install.packages("MatchIt", ask='FALSE')'
+#R --slave -e 'install.packages("ROCR", ask='FALSE')'
+#R --slave -e 'install.packages("gmp", ask='FALSE')'
+#R --slave -e 'install.packages("BiocManager", dependencies = 'TRUE', ask='FALSE')'
+#R --slave -e 'BiocManager::install(version = "3.16", ask='FALSE')'
+#R --slave -e 'BiocManager::install("ensembldb", ask='FALSE')'
+#R --slave -e 'BiocManager::install("EnsDb.Hsapiens.v75", ask='FALSE')'
+#R --slave -e 'install.packages("locuszoomr", ask='FALSE')'
+
+#
+##plink
+#mkdir -p /01.TOOLS/01.plink
+#cd /01.TOOLS/01.plink
+#wget https://s3.amazonaws.com/plink1-assets/plink_linux_x86_64_20230116.zip
+#unzip plink_linux_x86_64_20230116.zip
+#chmod 775 plink
+#cd /usr/local/bin/
+#ln -s /01.TOOLS/01.plink/plink plink
+#
+##bcftools
+#mkdir -p /01.TOOLS/02.bcftools
+#cd /01.TOOLS/02.bcftools
+#wget https://github.com/samtools/bcftools/releases/download/1.17/bcftools-1.17.tar.bz2
+#tar -xvf bcftools-1.17.tar.bz2
+#cd bcftools-1.17
+#make
+#chmod 775 bcftools
+#cd /usr/local/bin/
+#ln -sf /01.TOOLS/02.bcftools/bcftools-1.17/bcftools bcftools
+#
+#alias python=python3
+#apt-get update -y
+#apt-get install -y \
+# python3-dev
+#
+#yes | pip3 install --upgrade pip
+#yes | pip3 install pyBigWig
+#yes | pip3 install pandas
+#
+#apt-get install -y \
+# cmake
+#pip install cget
+#
+##DosageConverter
+#mkdir -p /01.TOOLS/03.DosageConvertor
+#cd /01.TOOLS/03.DosageConvertor
+#git clone https://github.com/Santy-8128/DosageConvertor.git
+#cd DosageConvertor-master
+#sh install.sh
+#cd /usr/local/bin/
+#chmod 775 /01.TOOLS/03.DosageConvertor/DosageConvertor-master/release-build/DosageConvertor
+#ln -sf /01.TOOLS/03.DosageConvertor/DosageConvertor-master/release-build/DosageConvertor DosageConvertor
+
+#mkdir -p /01.TOOLS/cmake
+#wget https://github.com/Kitware/CMake/releases/download/v3.30.0-rc3/cmake-3.30.0-rc3.tar.gz
+#tar -vxf cmake-3.30.0-rc3.tar.gz
+#cd cmake-3.30.0-rc3
+#./bootstrap --prefix=/01.TOOLS/cmake/cmake-install
+#make
+#make install
+#rm -rf /usr/bin/cmake
+#cd /usr/bin/
+#ln -sf /cmake-3.30.0-rc3/bin/cmake cmake
+
+#cmake --version
+
+
+apt-get install -y gcc
+apt-get install -y gfortran
+mkdir -p /01.TOOLS/04.LASER
+cd /01.TOOLS/04.LASER
+git clone https://github.com/statgen/LASER
+cd LASER
+#cget install .
+cd /usr/local/bin/
+
+ln -sf /01.TOOLS/04.LASER/LASER/laser laser
+ln -sf /01.TOOLS/04.LASER/LASER/trace trace
+
+%help

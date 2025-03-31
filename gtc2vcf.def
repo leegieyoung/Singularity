@@ -17,11 +17,11 @@ From: /mnt/nas/gylee/Singurality/methyl.4.4.1.sif
 #
 #R --slave -e 'devtools::install_github("hansenlab/tutorial.450k",lib="/usr/local/lib/R/site-library")'
 #R --slave -e 'BiocManager::install("preprocessCore", configure.args = c(preprocessCore = "--disable-threading"), force= TRUE, update=TRUE, type = "source")'
-#R --slave -e 'install.packages("doParallel", ask='FALSE')'
 #R --slave -e 'BiocManager::install("sesame", configure.args = c(preprocessCore = "--disable-threading"), update=TRUE)'
 #R --slave -e 'BiocManager::install("DMRcate", configure.args = c(preprocessCore = "--disable-threading"), update=TRUE)'
-R --slave -e 'BiocManager::install("ConsensusClusterPlus", update=TRUE)'
-
+#R --slave -e 'BiocManager::install("ConsensusClusterPlus", update=TRUE)'
+#R --slave -e 'install.packages("doParallel", ask='FALSE')'
+R --slave -e 'install.packages("foreach", ask='FALSE')'
 
 ##
 #apt-get update -y

@@ -19,31 +19,40 @@ From: /mnt/nas/gylee/Singurality/gatk.sif
 #cd /usr/local/bin/
 #ln -s /01.TOOLS/02.Trimmomatic/Trimmomatic-0.39/trimmomatic-0.39.jar trimmomatic-0.39.jar
 
-mkdir 01.TOOLS/01.fastqc
-cd 01.TOOLS/01.fastqc
-wget https://www.bioinformatics.babraham.ac.uk/projects/fastqc/fastqc_v0.11.9.zip
-unzip fastqc_v0.11.9.zip
-pwd
-chmod 777 FastQC/fastqc
-cd /usr/local/bin/
-ln -s /01.TOOLS/01.fastqc/FastQC/fastqc fastqc
+#mkdir 01.TOOLS/01.fastqc
+#cd 01.TOOLS/01.fastqc
+#wget https://www.bioinformatics.babraham.ac.uk/projects/fastqc/fastqc_v0.11.9.zip
+#unzip fastqc_v0.11.9.zip
+#pwd
+#chmod 777 FastQC/fastqc
+#cd /usr/local/bin/
+#ln -s /01.TOOLS/01.fastqc/FastQC/fastqc fastqc
+#
+#cd /01.TOOLS
+#mkdir 03.BWA
+#cd 03.BWA
+#wget https://sourceforge.net/projects/bio-bwa/files/bwakit/bwakit-0.7.15_x64-linux.tar.bz2
+#tar jxf bwakit-0.7.15_x64-linux.tar.bz2
+#cd /01.TOOLS/03.BWA/bwa.kit
+#cd /usr/local/bin/
+#ln -s /01.TOOLS/03.BWA/bwa.kit/bwa bwa
+#
+#cd /01.TOOLS
+#mkdir 04.MARKDUP
+#cd 04.MARKDUP
+#wget https://sourceforge.net/projects/picard/files/picard-tools/1.119/picard-tools-1.119.zip
+#unzip picard-tools-1.119.zip
+#cd picard-tools-1.119
+#cd /usr/local/bin/
+#ln -s /01.TOOLS/04.MARKDUP/picard-tools-1.119/MarkDuplicates.jar MarkDuplicates.jar
 
 cd /01.TOOLS
-mkdir 03.BWA
-cd 03.BWA
-wget https://sourceforge.net/projects/bio-bwa/files/bwakit/bwakit-0.7.15_x64-linux.tar.bz2
-tar jxf bwakit-0.7.15_x64-linux.tar.bz2
-cd /01.TOOLS/03.BWA/bwa.kit
+mkdir 05.vcftools
+cd 05.vcftools
+wget https://sourceforge.net/projects/vcftools/files/vcftools_0.1.13.tar.gz/download
+mv download vcftools_0.1.13.tar.gz
+tar -xvf vcftools_0.1.13.tar.gz 
 cd /usr/local/bin/
-ln -s /01.TOOLS/03.BWA/bwa.kit/bwa bwa
-
-cd /01.TOOLS
-mkdir 04.MARKDUP
-cd 04.MARKDUP
-wget https://sourceforge.net/projects/picard/files/picard-tools/1.119/picard-tools-1.119.zip
-unzip picard-tools-1.119.zip
-cd picard-tools-1.119
-cd /usr/local/bin/
-ln -s /01.TOOLS/04.MARKDUP/picard-tools-1.119/MarkDuplicates.jar MarkDuplicates.jar
+ln -s /01.TOOLS/05.vcftools/vcftools_0.1.13/cpp/vcftools vcftools
 
 %help

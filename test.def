@@ -1,0 +1,25 @@
+# based on Ubuntu 20.04 with Bioconductor
+#made by Giyoung Lee, If you want to help me,contact gy48085@gmail.com
+
+Bootstrap: library
+From: ubuntu:20.04
+
+%post
+deb https://cloud.r-project.org/bin/linux/ubuntu jammy-cran40/
+apt-get update -y
+apt-get install r-base -y
+
+
+R --slave -e 'if (!requireNamespace("BiocManager", quietly = TRUE)) {
+  install.packages("BiocManager")'
+
+R --slave -e 'BiocManager::install(version = "3.17", ask='FALSE')'
+
+%environment
+    export LC_ALL=C
+
+%labels
+    Author gylee
+    Version v0.0.0
+
+%help

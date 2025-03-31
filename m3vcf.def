@@ -1,0 +1,24 @@
+# based on Ubuntu 20.04 with Bioconductor
+#made by Giyoung Lee, If you want to help me,contact gy48085@gmail.com
+
+Bootstrap: localimage
+#From: /mnt/nas/gylee/Singurality/minimac4_1.0.3.sif
+#From: /mnt/nas/gylee/Singurality/m3vcf.sif
+
+%post
+#apt-get install -y \
+# git
+
+#--------------------------
+#m3vcftools
+#mkdir -p /00.TOOLS/01.m3vcftools
+#git clone https://github.com/Santy-8128/m3vcftools
+#cd m3vcftools
+#cget install -f ./requirements.txt                      # Install dependencies locally.
+#mkdir build && cd build                                 # Create out of source build directory.
+#cmake -DCMAKE_TOOLCHAIN_FILE=../cget/cget/cget.cmake .. # Configure project with dependency paths.
+#make                                                    # Build.
+
+cd /usr/local/bin/
+ln -sf /m3vcftools/build/m3vcftools m3vcftools
+

@@ -1,0 +1,28 @@
+# based on Ubuntu 20.04 with Bioconductor
+#made by Giyoung Lee, If you want to help me,contact gy48085@gmail.com
+
+Bootstrap: localimage
+From: /mnt/nas/gylee/Singurality/GWAS.sif
+
+%post
+#apt-get update -y
+apt-get install -y libgmp-dev
+
+yes | pip3 install --upgrade pip
+yes | pip3 install pyBigWig
+yes | pip3 install pandas
+
+apt-get install -y \
+ cmake
+pip install cget
+
+#LASER
+mkdir -p /01.TOOLS/
+cd /01.TOOLS/
+git clone https://github.com/statgen/LASER
+cd LASER
+cget install .
+
+#ln -s /01.TOOLS/01.plink/plink plink
+
+%help
